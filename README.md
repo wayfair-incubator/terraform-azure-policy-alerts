@@ -35,12 +35,12 @@ Here are a few learning resources to get started with:
 The workflow is as follows:
 
 
-![Policy Architecture](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/images/azure_workflow.PNG)
+![Policy Architecture](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/azure_workflow.PNG)
 
 
 1. The terraform code deploys all the required resources. But you have to manually authorize the automation accounts in the logic app (more info under post-deployment steps)
 2. The logic app is the backbone of this entire framework.
-3. The logic app triggers the automation account to run the powershell-runbook once every hour to run an on-demand policy scan. This script looks for resources that are non-compliant and for policies that have effect as "deny". If you need all the non-compliant resources irrespective of the effect, you can change the query accordingly.
+3. The logic app triggers the automation account to run the PowerShell-runbook once every hour to run an on-demand policy scan. This script looks for resources that are non-compliant in accordance to the assigned Azure policies that have effect as "deny". If you need all the non-compliant resources irrespective of the effect, you can change the command filter accordingly.
 5. These non-compliant resource information is sent to the Log Analytics Workspace as custom logs.
 6. The scheduled query runs every hour and gets the latest non-compliant resource information from logs and sends an email with the resource information to the notifiers.
 
@@ -50,7 +50,7 @@ Clone this repository , unzip it and open it in Atom (or any source code editor 
 
 After you have opened the folder, add the values of your environment in the following placeholders:
 1. In `variables.tf` add the email address of the team members to be added to the notifications group (line 7)
-2. In `variables.tf` add tenant id, client id and subsciption id (line 23-24, 30-31 and 38-39)
+2. In `variables.tf` add tenant id, client id and subscription id (line 23-24, 30-31 and 38-39)
 3. (optional) In `variables.tf` , you can change the app_id and thumbprint_id (line 12 & 17)
 4. (optional) In `deploy.tf`, you can change the query values for the alert rule (line 124- 129)
 5. Under the folder `template`:<br />
@@ -66,7 +66,7 @@ After you have opened the folder, add the values of your environment in the foll
 
 1. Add Azure CLI, Terraform path in the environment variables
 2. Authenticate to Azure using `az login` command from the command prompt<br />
-![azlogin](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/images/azlogin.PNG)
+![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/azlogin.PNG)
 
 3. Open a command prompt (using elevated privilege) and redirect the directory to the `azurepolicyalerts\alerts-script` folder
 4. Type `terraform init`
@@ -80,32 +80,32 @@ After you have opened the folder, add the values of your environment in the foll
 ## Post-deployment steps
  After the terraform deployment is complete, follow the steps below:
  1. Go to the logic app and select the `Logic app designer` under Development Tools<br />
- ![design](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/images/logic_app_outline.PNG)<br />
+ ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_outline.PNG)<br />
  2. Expand the `Connections` part and select the `azureautomation` radio button. This should auto-fill all the parameters <br />
- ![la_connectors](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/images/logic_app_connection.PNG)<br />
- 3. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the colector api to send logs.<br />
- ![data_collector](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/images/logic_app_data_collector.PNG)<br />
- 4. You can find these values from Log Analytics Workspace > Adanced Settings (under Settings) > Connected Sources> Agents Management
+ ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_connection.PNG)<br />
+ 3. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the collector API to send logs.<br />
+ ![data_collector](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_data_collector.PNG)<br />
+ 4. You can find these values from Log Analytics Workspace > Advanced Settings (under Settings) > Connected Sources> Agents Management
 
 
 ## Contributing
 
-Please read [CODE_OF_CONDUCT.md](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CODE_OF_CONDUCT.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versions
 * Current version is 1.0
 
-Please read [version.md](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/version.md) for details on versions.
+Please read [version.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/version.md) for details on versions.
 
 ## Authors
 
 * **Rachana Kamat** - *Initial work*
 
-See also the list of [contributors](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/CONTRIBUTING.md) who participated in this project.
+See also the list of [contributors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/CONTRIBUTING.md) who participated in this project.
 
 ## License
 
-This project is licensed under the  License - see the [LICENSE.md](https://github.csnzoo.com/rk896g/azurepolicyalerts/blob/master/License.md) file for details
+This project is licensed under the  License - see the [LICENSE.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/License.md) file for details
 
 ## Acknowledgments
 
