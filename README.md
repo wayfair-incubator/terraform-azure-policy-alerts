@@ -66,8 +66,7 @@ After you have opened the folder, add the values of your environment in the foll
 
 1. Add Azure CLI, Terraform path in the environment variables
 2. Authenticate to Azure using `az login` command from the command prompt<br />
-![azlogin](https://github.com/wayfair-incubator/
--policy-alerts/tree/master/images/azlogin.PNG)
+![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/images/azlogin.PNG)
 
 3. Open a command prompt (using elevated privilege) and redirect the directory to the `azurepolicyalerts\alerts-script` folder
 4. Type `terraform init`
