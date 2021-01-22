@@ -66,7 +66,7 @@ After you have opened the folder, add the values of your environment in the foll
 
 1. Add Azure CLI, Terraform path in the environment variables
 2. Authenticate to Azure using `az login` command from the command prompt<br />
-![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/azlogin.PNG)
+![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/azlogin.PNG)
 
 3. Open a command prompt (using elevated privilege) and redirect the directory to the `azurepolicyalerts\alerts-script` folder
 4. Type `terraform init`
@@ -80,9 +80,9 @@ After you have opened the folder, add the values of your environment in the foll
 ## Post-deployment steps
  After the terraform deployment is complete, follow the steps below:
  1. Go to the logic app and select the `Logic app designer` under Development Tools<br />
- ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_outline.PNG)<br />
+ ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_outline.PNG)<br />
  2. Expand the `Connections` part and select the `azureautomation` radio button. This should auto-fill all the parameters <br />
- ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_connection.PNG)<br />
+ ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_connection.PNG)<br />
  3. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the collector API to send logs.<br />
  ![data_collector](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_data_collector.PNG)<br />
  4. You can find these values from Log Analytics Workspace > Advanced Settings (under Settings) > Connected Sources> Agents Management
@@ -95,7 +95,7 @@ Please read [CODE_OF_CONDUCT.md](https://github.com/wayfair-incubator/terraform-
 ## Versions
 * Current version is 1.0
 
-Please read [version.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/version.md) for details on versions.
+Please read [version.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/VERSION.md) for details on versions.
 
 ## Authors
 
@@ -105,7 +105,7 @@ See also the list of [contributors](https://github.com/wayfair-incubator/terrafo
 
 ## License
 
-This project is licensed under the  License - see the [LICENSE.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/License.md) file for details
+This project is licensed under the  License - see the [LICENSE.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/LICENSE) file for details
 
 ## Acknowledgments
 
