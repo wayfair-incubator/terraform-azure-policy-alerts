@@ -1,0 +1,147 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_logic-us-logic-app-alerts_name": {
+            "defaultValue": "logic-us-logic-app-alerts",
+            "type": "String"
+        },
+        "connections_azureautomation_externalid": {
+            "defaultValue": "/subscriptions/<subscription-id-here>/resourceGroups/rg-us-policy-resource-group/providers/Microsoft.Resources/deployments/azureautomation",
+            "type": "String"
+        },
+
+        "connections_azureloganalyticsdatacollector_1_externalid": {
+            "defaultValue": "/subscriptions/<subscription-id-here>/resourceGroups/rg-us-policy-resource-group/providers/Microsoft.Resources/deployments/azureloganalyticsdatacollector",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_logic-us-logic-app-alerts_name')]",
+            "location": "eastus",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "Recurrence": {
+                            "recurrence": {
+                                "frequency": "Hour",
+                                "interval": 1,
+                                "startTime": "2021-01-01T00:00:00Z",
+                                "timeZone": "Eastern Standard Time"
+                            },
+                            "type": "Recurrence"
+                        }
+                    },
+                    "actions": {
+                        "Condition": {
+                            "actions": {
+                                "Send_Data": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": "[\n{\n\"body\":\"@{body('Get_job_output')}\"\n]\n}",
+                                        "headers": {
+                                            "Log-Type": "AzurePolicy"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['azureloganalyticsdatacollector_1']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "/api/logs"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Get_job_output": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "contains": [
+                                            "@body('Get_job_output')",
+                                            "Non-Compliant"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Create_job": {
+                            "runAfter": {},
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azureautomation']['connectionId']"
+                                    }
+                                },
+                                "method": "put",
+                                "path": "/subscriptions/@{encodeURIComponent('1e917372-a8e1-4003-9c7d-1a8a95545755')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs",
+                                "queries": {
+                                    "runbookName": "rb-us-powershell-runbook",
+                                    "wait": true,
+                                    "x-ms-api-version": "2015-10-31"
+                                }
+                            }
+                        },
+                        "Get_job_output": {
+                            "runAfter": {
+                                "Create_job": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azureautomation']['connectionId']"
+                                    }
+                                },
+                                "method": "get",
+                                "path": "/subscriptions/@{encodeURIComponent('1e917372-a8e1-4003-9c7d-1a8a95545755')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs/@{encodeURIComponent(body('Create_job')?['properties']?['jobId'])}/output",
+                                "queries": {
+                                    "x-ms-api-version": "2015-10-31"
+                                }
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azureautomation": {
+                                "connectionId": "[parameters('connections_azureautomation_externalid')]",
+                                "connectionName": "azureautomation",
+                                "id": "/subscriptions/<subscription-id-here>/providers/Microsoft.Web/locations/eastus/managedApis/azureautomation"
+                            },
+
+                            "azureloganalyticsdatacollector_1": {
+                                "connectionId": "[parameters('connections_azureloganalyticsdatacollector_1_externalid')]",
+                                "connectionName": "azureloganalyticsdatacollector",
+                                "id": "/subscriptions/<subscription-id-here>/providers/Microsoft.Web/locations/eastus/managedApis/azureloganalyticsdatacollector"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
