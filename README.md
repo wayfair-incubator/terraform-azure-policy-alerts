@@ -35,7 +35,7 @@ Here are a few learning resources to get started with:
 The workflow is as follows:
 
 
-![Policy Architecture](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/main/images/azure_workflow.PNG)
+![Policy Architecture](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/azure_workflow.PNG)
 
 
 1. The terraform code deploys all the required resources. But you have to manually authorize the automation accounts in the logic app (more info under post-deployment steps)
