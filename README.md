@@ -66,7 +66,7 @@ After you have opened the folder, add the values of your environment in the foll
 
 1. Add Azure CLI, Terraform path in the environment variables
 2. Authenticate to Azure using `az login` command from the command prompt<br />
-![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/images/azlogin.PNG)
+![azlogin](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/azlogin.PNG)
 
 3. Open a command prompt (using elevated privilege) and redirect the directory to the `azurepolicyalerts\alerts-script` folder
 4. Type `terraform init`
@@ -74,28 +74,28 @@ After you have opened the folder, add the values of your environment in the foll
 6. After plan is created, type `terraform apply`. It should take between 3-5 mins to create all the resources.
 7. Go to your [portal](https://portal.azure.com/) and check for all the resources under `rg-us-policy-resource-group`
 8. Team members will also get an email notification as below <br />
-![Email_notification](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/main/images/alerts_action_group.PNG)
+![Email_notification](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/alerts_action_group.PNG)
 
 
 ## Post-deployment steps
  After the terraform deployment is complete, follow the steps below:
  1. Go to the logic app and select the `Logic app designer` under Development Tools<br />
- ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/images/logic_app_outline.PNG)<br />
+ ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_outline.PNG)<br />
  2. Expand the `Connections` part and select the `azureautomation` radio button. This should auto-fill all the parameters <br />
- ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/images/logic_app_connection.PNG)<br />
+ ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/images/logic_app_connection.PNG)<br />
  3. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the collector API to send logs.<br />
- ![data_collector](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/main/images/logic_app_data_collector.PNG)<br />
+ ![data_collector](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_data_collector.PNG)<br />
  4. You can find these values from Log Analytics Workspace > Advanced Settings (under Settings) > Connected Sources> Agents Management
 
 
 ## Contributing
 
-Please read [CODE_OF_CONDUCT.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CODE_OF_CONDUCT.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versions
 * Current version is 1.0
 
-Please read [version.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/tree/master/version.md) for details on versions.
+Please read [version.md](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/master/version.md) for details on versions.
 
 ## Authors
 
