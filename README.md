@@ -78,15 +78,17 @@ After you have opened the folder, add the values of your environment in the foll
 
 
 ## Post-deployment steps
- After the terraform deployment is complete, follow the steps below:
- 1. Go to the logic app and select the `Logic app designer` under Development Tools<br />
+ After the terraform deployment is complete, follow the steps below:<br />
+ 1. Select the API connectors from the resource group and "Authorize" them using your Azure account, this will allow the API to perform the underlying actions on your part.<br />
+ 2. Next, go to the logic app and select the `Logic app designer` under Development Tools<br />
  ![design](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_outline.PNG)<br />
- 2. Expand the `Connections` part and select the `azureautomation` radio button. This should auto-fill all the parameters <br />
+ 3. Expand the `Connections` part and select the `azureautomation` radio button. This should auto-fill all the parameters. You can also authorize this using your Azure account <br />
  ![la_connectors](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_connection.PNG)<br />
- 3. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the collector API to send logs.<br />
+ 4. Expand the Condition action and further the `True` action. We need to add the log analytic workspace ID and primary key here for the collector API to send logs.<br />
  ![data_collector](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/logic_app_data_collector.PNG)<br />
- 4. You can find these values from Log Analytics Workspace > Advanced Settings (under Settings) > Connected Sources> Agents Management
+ 5. You can find these values from Log Analytics Workspace > Advanced Settings (under Settings) > Connected Sources> Agents Management
 
+Note: You will not be able to see any custom logs till the logic app runs its schedule for couple of times.
 
 ## Contributing
 
