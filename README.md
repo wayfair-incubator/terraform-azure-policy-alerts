@@ -70,8 +70,8 @@ After you have opened the folder, add the values of your environment in the foll
 
 3. Open a command prompt (using elevated privilege) and redirect the directory to the `azurepolicyalerts\alerts-script` folder
 4. Type `terraform init`
-5. Once your terraform is initialized, type `terraform plan`. This should show 10 resources to be created.
-6. After plan is created, type `terraform apply`. It should take between 3-5 mins to create all the resources.
+5. Once your terraform is initialized, type `terraform plan`. 
+6. After the plan is created, type `terraform apply`. It should take between 3-5 mins to create all the resources.
 7. Go to your [portal](https://portal.azure.com/) and check for all the resources under `rg-us-policy-resource-group`
 8. Team members will also get an email notification as below <br />
 ![Email_notification](https://github.com/wayfair-incubator/terraform-azure-policy-alerts/blob/main/images/alerts_action_group.PNG)
@@ -111,7 +111,7 @@ This project is licensed under the  License - see the [LICENSE.md](https://githu
 
 ## Acknowledgments
 
-The concept for the workflow has been referenced from the following blogs
+The concept for the workflow has been referenced from the following blogs:
 * [Azure Monitor alerting rule to notify non-compliant resourrce](https://msandbu.org/azure-monitoring-alerting-rule-to-notify-on-non-compliant-resources/) by Marius Sandbu
 * [Using Log Analytics alerts for non-compliant Azure Policies](https://medium.com/azure-architects/using-log-analytics-alerts-for-non-compliant-azure-policies-8d99f74089d9) by Andrew Kelleher
 
