@@ -93,7 +93,7 @@
                                     }
                                 },
                                 "method": "put",
-                                "path": "/subscriptions/@{encodeURIComponent('1e917372-a8e1-4003-9c7d-1a8a95545755')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs",
+                                "path": "/subscriptions/@{encodeURIComponent('<subscription-id-here>')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs",
                                 "queries": {
                                     "runbookName": "rb-us-powershell-runbook",
                                     "wait": true,
@@ -115,7 +115,7 @@
                                     }
                                 },
                                 "method": "get",
-                                "path": "/subscriptions/@{encodeURIComponent('1e917372-a8e1-4003-9c7d-1a8a95545755')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs/@{encodeURIComponent(body('Create_job')?['properties']?['jobId'])}/output",
+                                "path": "/subscriptions/@{encodeURIComponent('<subscription-id-here>')}/resourceGroups/@{encodeURIComponent('rg-us-policy-resource-group')}/providers/Microsoft.Automation/automationAccounts/@{encodeURIComponent('aa-us-policy-automation-account')}/jobs/@{encodeURIComponent(body('Create_job')?['properties']?['jobId'])}/output",
                                 "queries": {
                                     "x-ms-api-version": "2015-10-31"
                                 }
