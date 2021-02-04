@@ -1,4 +1,7 @@
 Disable-AzContextAutosave –Scope Process
+Install-Module -Name Az.Accounts -RequiredVersion 2.1.0
+Install-Module -Name Az.PolicyInsights
+Install-Module -Name Az.Resources -RequiredVersion 3.2.0
 $connectionName = "AzureRunAsConnection"
 try
 {
