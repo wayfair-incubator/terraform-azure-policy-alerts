@@ -7,7 +7,7 @@ Pull Request Process
 --------------------
 1.	Ensure any install or build dependencies are shared with the project maintainer before sending the pull request.
 2.	Update the README.md files with details of changes to the interface. When adding changes to the README, make sure they are in the correct section such as pre-deployment and post deployment
-3.	PBump the version numbers in VERSION.md and the README.md to the new version that this pull request would represent. 
+3.	Bump the version numbers in VERSION.md and the README.md to the new version that this pull request would represent. 
 4.	Project maintainer may merge the Pull Request in once you have the sign-off of one other maintainer.
 
 Our Responsibilities
