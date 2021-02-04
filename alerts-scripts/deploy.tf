@@ -71,37 +71,6 @@ data "local_file" "example_content" {
   filename = "${path.module}/runbook/example_runbook.ps1"
 }
 
-#Download modules dependencies for runbook
-resource "azurerm_automation_module" "example_module_1" {
-  name                    = "Az.Accounts"
-  resource_group_name     = azurerm_resource_group.example_resource_group.name
-  automation_account_name = azurerm_automation_account.example_automation_account.name
-
-  module_link {
-    uri = "https://www.powershellgallery.com/api/v2/package/Az.Accounts/2.2.3"
-  }
-}
-
-resource "azurerm_automation_module" "example_module_2" {
-  name                    = "Az.Resources"
-  resource_group_name     = azurerm_resource_group.example_resource_group.name
-  automation_account_name = azurerm_automation_account.example_automation_account.name
-
-  module_link {
-    uri = "https://www.powershellgallery.com/api/v2/package/Az.Resources/3.1.1"
-  }
-}
-
-resource "azurerm_automation_module" "example_module_3" {
-  name                    = "Az.PolicyInsights"
-  resource_group_name     = azurerm_resource_group.example_resource_group.name
-  automation_account_name = azurerm_automation_account.example_automation_account.name
-
-  module_link {
-    uri = "https://www.powershellgallery.com/api/v2/package/Az.PolicyInsights/1.4.0"
-  }
-}
-
 # Automation runbook to evaluate non-compliant resources
 resource "azurerm_automation_runbook" "example_runbook" {
   name                    = "rb-us-powershell-runbook"
