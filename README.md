@@ -50,7 +50,7 @@ After you have opened the folder, add the values of your environment in the foll
 1. In `variables.tf` add the email address of the team members to be added to the notifications group (line 7)
 2. In `variables.tf` add tenant id, client id and subscription id (line 23-24, 30-31 and 38-39)
 3. (Optional) In `variables.tf`, you can change the app_id (line 12)
-4. (Optional) In `deploy.tf`, you can change the query values for the alert rule (line 193-198)
+4. (Optional) In `deploy.tf`, you can change the query values for the alert rule (line 162-167)
 5. Under the folder `template`:<br />
    5.1 In `azureautomation.json`, add the subscription-id in the placeholder marked "subscription-id-here" <br />
    5.2 In `azureloganalytics.json`, add the subscription-id in the placeholder marked "subscription-id-here>" <br />
