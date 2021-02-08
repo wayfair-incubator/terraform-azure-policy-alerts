@@ -14,3 +14,7 @@ provider "azuread" {
   client_id       = var.client_id["dev"]
 }
 provider "time" {}
+
+provider "local" {
+  version = "2.0.0"
+}
