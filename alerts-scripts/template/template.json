@@ -52,7 +52,7 @@
                                     "runAfter": {},
                                     "type": "ApiConnection",
                                     "inputs": {
-                                        "body": "[\n{\n\"body\":\"@{body('Get_job_output')}\"\n]\n}",
+                                        "body": "[\n{\n\"body\":\"@{body('Get_job_output')}\"\n}\n]",
                                         "headers": {
                                             "Log-Type": "AzurePolicy"
                                         },
