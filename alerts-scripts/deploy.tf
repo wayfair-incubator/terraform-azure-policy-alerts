@@ -66,7 +66,36 @@ resource "azurerm_automation_connection_service_principal" "example_connection" 
   certificate_thumbprint  = azurerm_automation_certificate.example_certificate.thumbprint
 }
 
+#Download modules dependencies for runbook
+resource "azurerm_automation_module" "example_module_1" {
+  name                    = "Az.Accounts"
+  resource_group_name     = azurerm_resource_group.example_resource_group.name
+  automation_account_name = azurerm_automation_account.example_automation_account.name
 
+  module_link {
+    uri = "location.href='https://www.powershellgallery.com/api/v2/package/Az.Accounts/2.2.4'"
+  }
+}
+
+resource "azurerm_automation_module" "example_module_2" {
+  name                    = "Az.Resources"
+  resource_group_name     = azurerm_resource_group.example_resource_group.name
+  automation_account_name = azurerm_automation_account.example_automation_account.name
+
+  module_link {
+    uri = "https://www.powershellgallery.com/api/v2/package/Az.Resources/3.2.0"
+  }
+}
+
+resource "azurerm_automation_module" "example_module_3" {
+  name                    = "Az.PolicyInsights"
+  resource_group_name     = azurerm_resource_group.example_resource_group.name
+  automation_account_name = azurerm_automation_account.example_automation_account.name
+
+  module_link {
+    uri = "https://www.powershellgallery.com/api/v2/package/Az.PolicyInsights/1.4.0"
+  }
+}
 data "local_file" "example_content" {
   filename = "${path.module}/runbook/example_runbook.ps1"
 }
